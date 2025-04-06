@@ -1,0 +1,36 @@
+command /bc [<text>]:
+    permission: op
+    usage: &cCorrect Usage: /broadcast [message]
+    trigger:
+        broadcast " "
+        broadcast "&5【&aＺｙＤａｗｎ&5】 &0&l/ &r&f&l %arg-1%"
+        broadcast " "
+
+command /roleplay:
+    trigger:
+        execute console command "lp user %player% parent set roleplaymode"
+        execute console command "nick %player% &6%player%"
+        execute console command "team join roleplayteam %player%"
+        broadcast "&a%player% &fmemasuki mode roleplay"
+
+command /ooc:
+    trigger:
+        execute console command "lp user %player% parent remove roleplaymode"
+        execute console command "nick %player% %player%"
+        execute console command "team leave %player%"
+        broadcast "&a%player% &fkeluar dari mode roleplay"
+
+command /staffchatinfo:
+    aliases: /scinfo, /sci
+    trigger:
+        message "&6&l(!) &fStaff Chat made by Wolf."
+        message "&6&l(!) &fCurrent Version: &81.0"
+
+command /staffchat [<text>]:
+    aliases: /sc, /a
+    permission: *
+    permission message: &6&l(!) &fYou need sc.staffchat permission to access Staff Chat!
+    trigger:
+        loop all players:
+            if loop-player has permission "sc.staffchat":
+                send "&6StaffChat &8» &8%player's display name%&7: %arg 1%" to loop-player
